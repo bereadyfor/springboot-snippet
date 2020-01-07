@@ -12,7 +12,7 @@ import com.beready4.api.member.service.MemberService;
 import com.beready4.common.member.model.Member;
 
 @RestController
-@RequestMapping("members")
+@RequestMapping(value = "members")
 public class MemberController {
 
 	private final MemberService memberService;
@@ -22,12 +22,12 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 
-	@GetMapping(path = "")
+	@GetMapping("")
 	public ResponseEntity<?> getMembers() {
 		return ResponseEntity.ok().build();
 	}
 
-	@PostMapping(path = "")
+	@PostMapping("")
 	public ResponseEntity<Member> registerMember(@RequestBody Member member) {
 		return ResponseEntity.ok(memberService.registerMember(member));
 	}
