@@ -6,10 +6,6 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-GET http://localhost:8080/members
-
-###
-
 POST http://localhost:8080/members
 Accept: application/json
 Content-Type: application/json
@@ -20,5 +16,23 @@ Content-Type: application/json
   "name":"test",
   "loginUrl":"test"
 }
+
+> {%
+client.test("[멤버 생성] Success Test", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+    client.assert(response.body['no'] !== 0, "no is not generated")
+})
+%}
+
+###
+
+GET http://localhost:8080/members
+
+> {%
+client.test("[멤버 조회] Success Test", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+    client.assert(response.body.length !== 0, "Member not found")
+})
+%}
 
 ###

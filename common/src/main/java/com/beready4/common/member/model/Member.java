@@ -7,7 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +21,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Member {
 
 	@Id
@@ -28,6 +33,9 @@ public class Member {
 	private String name;
 	private String loginUrl;
 
+	@CreationTimestamp
 	private LocalDateTime createdAt;
+
+	@UpdateTimestamp
 	private LocalDateTime modifiedAt;
 }

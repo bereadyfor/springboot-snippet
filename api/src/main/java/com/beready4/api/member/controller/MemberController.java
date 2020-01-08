@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.beready4.api.member.controller.request.MemberRequest;
 import com.beready4.api.member.service.MemberService;
 import com.beready4.common.member.model.Member;
 
@@ -24,11 +25,11 @@ public class MemberController {
 
 	@GetMapping("")
 	public ResponseEntity<?> getMembers() {
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(memberService.getMembers());
 	}
 
 	@PostMapping("")
-	public ResponseEntity<Member> registerMember(@RequestBody Member member) {
-		return ResponseEntity.ok(memberService.registerMember(member));
+	public ResponseEntity<Member> registerMember(@RequestBody MemberRequest memberRequest) {
+		return ResponseEntity.ok(memberService.registerMember(memberRequest.toMember()));
 	}
 }

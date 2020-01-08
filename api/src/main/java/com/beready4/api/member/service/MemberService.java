@@ -1,5 +1,7 @@
 package com.beready4.api.member.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,10 @@ public class MemberService {
 	}
 
 	public Member registerMember(Member member) {
-		Member added = memberRepository.save(member);
-		return added;
+		return memberRepository.save(member);
+	}
+
+	public List<Member> getMembers() {
+		return memberRepository.findAll();
 	}
 }
