@@ -3,7 +3,7 @@
 ### Overview
 - springboot
 - multiple project
-
-### Next
-- http api
-- jpa
+- gradle
+- RestController
+- JPA (spring-data-jpa)
+- intellij http client (.http)
