@@ -36,3 +36,48 @@ client.test("[멤버 조회] Success Test", function() {
 %}
 
 ###
+
+GET http://localhost:8080/members/1
+
+> {%
+client.test("[멤버 단건 조회] Success Test", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+    client.assert(response.body.length !== 0, "Member not found")
+    client.assert(response.body['no'] === 1, "Member not found")
+})
+%}
+
+###
+
+PUT http://localhost:8080/members/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id":"test2",
+  "password":"test2",
+  "name":"test2",
+  "loginUrl":"test2"
+}
+
+
+> {%
+client.test("[멤버 수정] Success Test", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+    client.assert(response.body.length !== 0, "Member not found")
+    client.assert(response.body['id'] === 'test2', "Member not found")
+})
+%}
+
+
+###
+
+DELETE http://localhost:8080/members/1
+
+> {%
+client.test("[멤버 삭제] Success Test", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+})
+%}
+
+###

@@ -18,11 +18,34 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 	}
 
-	public Member registerMember(Member member) {
+	public Member createMember(Member member) {
 		return memberRepository.save(member);
 	}
 
 	public List<Member> getMembers() {
 		return memberRepository.findAll();
+	}
+
+	public Member getMember(long no) {
+		return memberRepository.findByNo(no);
+	}
+
+	public Member updateMember(long no, Member newMember) {
+		Member member = getMember(no);
+
+		if (member == null) {
+			return null;
+		}
+
+		member.setId(newMember.getId());
+		member.setName(newMember.getName());
+		member.setPassword(newMember.getPassword());
+		member.setLoginUrl(newMember.getLoginUrl());
+
+		return memberRepository.save(member);
+	}
+
+	public void deleteMember(long no) {
+		memberRepository.deleteById(no);
 	}
 }
