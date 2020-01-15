@@ -1,5 +1,7 @@
 package com.beready4.api.member.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,7 +39,7 @@ public class MemberController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Member> createMember(@RequestBody MemberCreateRequest memberCreateRequest) {
+	public ResponseEntity<Member> createMember(@RequestBody @Valid MemberCreateRequest memberCreateRequest) {
 		return ResponseEntity.ok(memberService.createMember(memberCreateRequest.toMember()));
 	}
 

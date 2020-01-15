@@ -26,6 +26,24 @@ client.test("[멤버 생성] Success Test", function() {
 
 ###
 
+POST http://localhost:8080/members
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id":"test",
+  "name":"test",
+  "loginUrl":"test"
+}
+
+> {%
+client.test("[멤버 생성] Fail Test", function() {
+    client.assert(response.status === 400, "Response status is not 400");
+})
+%}
+
+###
+
 GET http://localhost:8080/members
 
 > {%
